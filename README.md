@@ -33,9 +33,38 @@ Citadel/
 └── tests/                  # Test suite for all components
 ```
 
-### Key Components
+For detailed information about the project architecture, please refer to the [Integration Architecture Documentation](./docs/Citadel_Integration_Architecture.md).
 
-#### AG-UI Protocol Layer
+## Infrastructure Configuration
+
+The Hana-X technical landscape for Citadel consists of eight dedicated servers with specific roles:
+
+1. **LLM Server**: Handles local AI inference with Ollama
+2. **Vector Database Server**: Runs Qdrant for vector storage and retrieval
+3. **Orchestration Server**: Manages workflows with n8n
+4. **Database Server**: Provides data storage with Supabase/PostgreSQL
+5. **Development Server**: Environment for code development
+6. **Test Server**: Dedicated environment for testing
+7. **DevOps Server**: Manages CI/CD pipelines and monitoring
+8. **DevOps Workstation**: Workstation for DevOps operations
+
+For detailed information about the infrastructure configuration, please refer to the [Infrastructure Configuration Plan](./docs/infrastructure_configuration_plan.md) and [Infrastructure Validation Plan](./docs/infrastructure_validation_plan.md).
+
+## IDE Configuration
+
+For development on Project Citadel, we recommend using:
+
+1. **Visual Studio Code** (Primary recommendation)
+2. **PyCharm Professional** (Alternative for Python-focused development)
+3. **WebStorm** (Alternative for JavaScript/React development)
+4. **Windsurf Wave 9** (AI-enhanced IDE for advanced development)
+5. **CodeLLM** (AI-powered extension for Visual Studio Code)
+
+Each IDE should be configured with specific extensions and settings for optimal development experience. For detailed setup instructions, please refer to the [IDE Configuration Guide](./docs/IDE_Configuration_Guide.md).
+
+## Key Components
+
+### AG-UI Protocol Layer
 
 The AG-UI (Agent User Interaction Protocol) serves as the standardized communication layer between AI backend agents and frontend applications:
 
@@ -44,7 +73,7 @@ The AG-UI (Agent User Interaction Protocol) serves as the standardized communica
 - Transport-agnostic design supporting HTTP SSE, WebSockets, and other mechanisms
 - Efficient state synchronization through snapshots and deltas
 
-#### LangGraph Enhancements
+### LangGraph Enhancements
 
 Citadel extends LangGraph's capabilities for complex agent workflows:
 
@@ -54,7 +83,7 @@ Citadel extends LangGraph's capabilities for complex agent workflows:
 - Event-driven feedback loops for continuous improvement
 - Workflow templates for common agent patterns
 
-#### Integration Layer
+### Integration Layer
 
 The integration layer connects all components into a cohesive system:
 
@@ -64,7 +93,7 @@ The integration layer connects all components into a cohesive system:
 - Tool registration and execution framework
 - Observability and tracing capabilities
 
-#### CopilotKit Frontend
+### CopilotKit Frontend
 
 The frontend leverages CopilotKit for AI-powered user interfaces:
 
@@ -77,7 +106,7 @@ The frontend leverages CopilotKit for AI-powered user interfaces:
 
 ### Prerequisites
 
-- Python 3.9+
+- Python 3.10+
 - Node.js 18+
 - Git
 
@@ -109,6 +138,52 @@ npm install
 
 # Create environment file
 echo "NEXT_PUBLIC_API_URL=http://localhost:8000" > .env.local
+```
+
+## Required Python Libraries
+
+The core Python dependencies for Project Citadel include:
+
+```
+httpx
+beautifulsoup4
+requests
+PyPDF2
+langchain
+langchain-core
+langchain-text-splitters
+faiss-cpu
+numpy
+langgraph>=0.0.15
+pydantic>=2.0.0
+```
+
+For development and testing:
+```
+pytest
+black
+isort
+```
+
+For OCR capabilities:
+```
+pytesseract
+Pillow
+```
+
+For IDE integration with CodeLLM:
+```
+fastapi
+uvicorn
+langserve[all]
+tiktoken
+python-dotenv
+asyncio
+uvloop
+websockets
+copilotkit
+cldk
+redis-stack-server
 ```
 
 ## Usage
