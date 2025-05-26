@@ -11,6 +11,8 @@ The following IDEs are recommended for Project Citadel development:
 1. **Visual Studio Code** (Primary recommendation)
 2. **PyCharm Professional** (Alternative for Python-focused development)
 3. **WebStorm** (Alternative for JavaScript/React development)
+4. **Windsurf Wave 9** (AI-enhanced IDE for advanced development)
+5. **CodeLLM** (AI-powered extension for Visual Studio Code)
 
 ## Visual Studio Code Configuration
 
@@ -257,6 +259,334 @@ The following IDEs are recommended for Project Citadel development:
    - Next.js: `npm run dev`
    - Tests: `npm test`
    - Build: `npm run build`
+
+## Windsurf Wave 9 Configuration
+
+Windsurf Wave 9 (formerly known as Codeium) is an AI-powered IDE built on Visual Studio Code that offers advanced features for Project Citadel development.
+
+### Key Features
+
+- **Cascade AI Agent**: Provides deep contextual understanding of entire projects, enabling code generation, modification, and debugging across multiple files simultaneously
+- **Supercomplete Autocomplete**: Context-aware code suggestions that anticipate developer intent
+- **Natural Language Commands**: Allows developers to instruct the IDE using natural language
+- **Flow-Based Development**: Supports building entire applications through AI-guided workflows
+- **Live Previews**: For web projects, real-time previews are integrated
+- **Deployment Assistance**: Generates deployment configurations for platforms like Heroku or Railway
+- **Multi-Model AI Support**: Access to proprietary models like SWE-1, GPT-4, Claude, and Gemini
+
+### Installation and Setup
+
+#### System Requirements:
+- **Windows**: Windows 10 or later (x64 or Arm64)
+- **macOS**: macOS 11 (Big Sur) or later
+- **Linux**: Ubuntu 20.04 or later (or equivalent)
+- **Hardware**: Minimum 8 GB RAM (16 GB recommended), 2 GB free disk space
+- **Additional**: Node.js (14+), modern web browser for web previews
+
+#### Installation Steps:
+
+1. **Download**: Visit the official Windsurf website (https://windsurf.com/download) and download the appropriate installer for your operating system.
+2. **Install**: Run the installer and follow the setup wizard.
+3. **Launch and Sign In**: Launch Windsurf, sign in with a Windsurf account (formerly Codeium), and sync settings if needed.
+4. **Post-Installation Configuration**:
+   - Import existing VS Code settings or start fresh
+   - Configure themes, keybindings, and AI preferences
+   - Install additional plugins as needed
+
+### Project Citadel Configuration
+
+#### Required Extensions
+
+Windsurf supports most VS Code extensions. For Project Citadel, install the following:
+
+| Extension | Purpose | Configuration Notes |
+|-----------|---------|---------------------|
+| Python | Python language support | Configure with Python 3.10+ interpreter |
+| Pylance | Python type checking | Enable strict type checking |
+| ESLint | JavaScript/TypeScript linting | Use project's ESLint configuration |
+| Prettier | Code formatting | Use project's Prettier configuration |
+| Tailwind CSS IntelliSense | Tailwind CSS support | Required for UI development |
+| Docker | Container management | For development containers |
+| GitLens | Git integration | For version control |
+
+#### Python Integration
+
+Configure Windsurf for optimal Python development:
+
+1. **Python-Optimized Models**: Enable Python-optimized models in AI preferences
+2. **Project-Specific Settings**: Configure local indexing for faster suggestions
+3. **Model Context Protocol (MCP)**: Set up MCP for enhanced Python development workflows
+
+#### settings.json Configuration
+
+```json
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/.venv/bin/python",
+  "python.linting.enabled": true,
+  "python.linting.pylintEnabled": true,
+  "python.formatting.provider": "black",
+  "python.formatting.blackArgs": ["--line-length=88"],
+  "python.analysis.typeCheckingMode": "strict",
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.organizeImports": true,
+    "source.fixAll.eslint": true
+  },
+  "windsurf.ai.model": "swe-1",
+  "windsurf.ai.temperature": 0.2,
+  "windsurf.cascade.enabled": true,
+  "windsurf.mcp.enabled": true,
+  "windsurf.mcp.servers": [
+    {
+      "name": "filesystem",
+      "url": "http://localhost:8000/mcp"
+    }
+  ],
+  "windsurf.indexing.local.enabled": true,
+  "windsurf.indexing.local.excludePatterns": [
+    "**/node_modules/**",
+    "**/.venv/**",
+    "**/__pycache__/**"
+  ]
+}
+```
+
+#### MCP Configuration for Project Citadel
+
+To enable advanced AI capabilities with Project Citadel's specific technology stack:
+
+1. Access MCP settings via the Cascade toolbar (hammer icon)
+2. Create or modify the configuration file to include Python-related MCP servers
+3. Configure automation support for Project Citadel's specific needs
+
+```json
+{
+  "windsurf.mcp.servers": [
+    {
+      "name": "filesystem",
+      "url": "http://localhost:8000/mcp"
+    },
+    {
+      "name": "langchain",
+      "url": "http://localhost:8001/mcp"
+    },
+    {
+      "name": "fastapi",
+      "url": "http://localhost:8002/mcp"
+    }
+  ],
+  "windsurf.mcp.tools": [
+    "filesystem_read_file",
+    "filesystem_write_file",
+    "langchain_run_chain",
+    "fastapi_generate_endpoint"
+  ]
+}
+```
+
+### Integration with MCP Servers
+
+Windsurf Wave 9 integrates seamlessly with Project Citadel's MCP servers:
+
+1. **Configuration**: Add MCP server details in settings.json
+2. **Authentication**: Configure authentication if required
+3. **Usage**: Access MCP servers through the Cascade interface or via commands
+
+### Recommended Workflow for Project Citadel
+
+1. **Project Setup**:
+   - Clone the Project Citadel repository
+   - Open in Windsurf Wave 9
+   - Configure Python interpreter and extensions
+   - Set up MCP servers
+
+2. **Development**:
+   - Use Cascade AI for code generation and modification
+   - Leverage natural language commands for complex tasks
+   - Use live previews for frontend development
+   - Utilize MCP servers for specialized tasks
+
+3. **Deployment**:
+   - Use deployment assistance for generating configurations
+   - Test deployments with integrated tools
+
+## CodeLLM Configuration
+
+CodeLLM is an advanced AI-powered code editor extension for Visual Studio Code that enhances development for Project Citadel.
+
+### Key Features
+
+- **AI Autocomplete**: Enhanced autocomplete with AI-driven suggestions
+- **Multi-Model Routing**: Smart routing technology that selects the best LLM for each task
+- **Code Explanation and Documentation**: Provides contextual explanations of code snippets
+- **Code Refactoring and Optimization**: Improves code structure, readability, and performance
+- **Feature Extension and Automation**: Automates feature addition
+- **Codebase Embedding and Search**: Integrates with Redis or OpenAI embeddings to understand large codebases
+- **Code Translation**: Supports multilingual code translation
+- **Testing and Performance Measurement**: Automates creation of unit tests and measures API latency
+
+### Installation and Setup
+
+#### Installation via Visual Studio Code Marketplace:
+1. Open VS Code
+2. Navigate to the Extensions view (`Ctrl+Shift+X`)
+3. Search for "CodeLLM" or "Abacus AI"
+4. Click "Install" to add the extension
+
+#### Manual Installation Using VSIX Files:
+1. Download the VSIX extension file from the marketplace or the official repository (https://github.com/abacusai/codellm-releases)
+2. In VS Code, open the Extensions view
+3. Click the ellipsis (`...`) in the top right corner
+4. Select "Install from VSIX"
+5. Browse to the downloaded VSIX file and select it
+6. Confirm installation and restart VS Code if prompted
+
+### Project Citadel Configuration
+
+#### Configuration Options
+
+Configure CodeLLM for Project Citadel development:
+
+1. **Local LLM Models and API Access**:
+   - Choose between local LLM models (e.g., Ollama) or cloud-based APIs (e.g., OpenAI)
+   - For local models, install Ollama:
+     ```bash
+     # Linux
+     curl -fsSL https://ollama.com/install.sh | sh
+     
+     # Start Ollama server
+     ollama serve
+     ```
+
+2. **API Endpoint Configuration**:
+   - For local models, specify the API endpoint or local server URL
+   - For OpenAI, input your API key and select the preferred model
+
+3. **Embeddings and Devcontainers**:
+   - Install Redis for embeddings:
+     ```bash
+     # Install Redis Stack Server
+     sudo apt-get install redis-stack-server
+     
+     # Start Redis server
+     sudo systemctl start redis-stack-server
+     ```
+
+4. **settings.json Configuration**:
+   ```json
+   {
+     "codellm.model.provider": "ollama",
+     "codellm.model.endpoint": "http://localhost:11434/api/generate",
+     "codellm.model.name": "codellama",
+     "codellm.embeddings.enabled": true,
+     "codellm.embeddings.provider": "redis",
+     "codellm.embeddings.redisUrl": "redis://localhost:6379",
+     "codellm.workspace.indexing.enabled": true,
+     "codellm.workspace.indexing.excludePatterns": [
+       "**/node_modules/**",
+       "**/.venv/**",
+       "**/__pycache__/**"
+     ]
+   }
+   ```
+
+#### Python Integration
+
+CodeLLM provides robust Python integration through its Python SDK (cldk):
+
+1. **Installation**:
+   ```bash
+   pip install cldk
+   ```
+
+2. **Basic Usage**:
+   ```python
+   from cldk import CLDK
+   cldk = CLDK(language="python")
+   analysis = cldk.analysis(project_path="/path/to/project")
+   ```
+
+3. **Integration with Project Citadel**:
+   - Create a `.cldk` configuration file in the project root:
+     ```json
+     {
+       "language": "python",
+       "project_path": ".",
+       "analysis_backend": "tree-sitter",
+       "exclude_patterns": [
+         "**/node_modules/**",
+         "**/.venv/**",
+         "**/__pycache__/**"
+       ]
+     }
+     ```
+
+### Required Python Libraries for Project Citadel
+
+For Project Citadel development with CodeLLM, ensure the following Python libraries are installed:
+
+```bash
+# Create and activate virtual environment
+python -m venv .venv
+source .venv/bin/activate
+
+# Install required packages
+pip install fastapi uvicorn pydantic langchain langchain-core langgraph langserve[all] tiktoken python-dotenv asyncio uvloop httpx websockets copilotkit redis-stack-server cldk
+```
+
+### Sample requirements.txt
+
+```
+# Backend
+fastapi==0.104.1
+uvicorn==0.24.0
+pydantic==2.4.2
+langchain==0.0.335
+langchain-core==0.1.4
+langgraph==0.0.20
+langserve[all]==0.0.30
+tiktoken==0.5.1
+python-dotenv==1.0.0
+asyncio==3.4.3
+uvloop==0.19.0
+httpx==0.25.1
+websockets==12.0
+copilotkit==0.2.0
+
+# CodeLLM integration
+cldk==0.1.0
+redis-stack-server==7.2.0
+```
+
+### Integration with MCP Servers
+
+CodeLLM can be integrated with Project Citadel's MCP servers:
+
+1. **Configuration**:
+   - Add MCP server details in settings.json
+   - Configure authentication if required
+
+2. **Usage**:
+   - Access MCP servers through CodeLLM's interface
+   - Use the `@file` command to access workspace files
+
+### Recommended Workflow for Project Citadel
+
+1. **Project Setup**:
+   - Clone the Project Citadel repository
+   - Open in VS Code with CodeLLM extension
+   - Configure Python interpreter and extensions
+   - Set up local LLM models and embeddings
+
+2. **Development**:
+   - Use AI autocomplete for code generation
+   - Leverage code explanation for understanding complex parts
+   - Use codebase embedding for intelligent search
+   - Automate testing and performance measurement
+
+3. **Deployment**:
+   - Use code optimization features for performance tuning
+   - Generate deployment configurations with AI assistance
 
 ## Project-Specific Configuration Files
 
@@ -678,6 +1008,39 @@ For Project Citadel's specific needs, a custom MCP server can be deployed:
 
 Similar to PyCharm, use the "Code With Me" plugin with appropriate configuration for the custom MCP server.
 
+#### Windsurf Wave 9 Integration
+
+1. **Configuration**:
+   ```json
+   // settings.json addition for Windsurf
+   {
+     "windsurf.mcp.enabled": true,
+     "windsurf.mcp.server.url": "wss://mcp.project-citadel.com",
+     "windsurf.mcp.server.token": "${env:MCP_TOKEN}",
+     "windsurf.mcp.synchronization.mode": "full"
+   }
+   ```
+
+2. **Commands**:
+   - Access MCP features through the Cascade toolbar
+   - Use natural language commands to interact with MCP servers
+
+#### CodeLLM Integration
+
+1. **Configuration**:
+   ```json
+   // settings.json addition for CodeLLM
+   {
+     "codellm.mcp.enabled": true,
+     "codellm.mcp.server.url": "wss://mcp.project-citadel.com",
+     "codellm.mcp.server.token": "${env:MCP_TOKEN}"
+   }
+   ```
+
+2. **Usage**:
+   - Use the `@mcp` command to interact with MCP servers
+   - Access MCP features through the CodeLLM interface
+
 ### Advanced Features
 
 1. **AI Integration**:
@@ -867,3 +1230,5 @@ This IDE configuration guide provides a comprehensive setup for Project Citadel 
 The configurations are optimized for the project's technology stack, including Python 3.10+, FastAPI, LangChain, LangGraph, React, Next.js, CopilotKit, and AG-UI Protocol. They provide support for code quality tools, debugging, and deployment, enabling developers to focus on building high-quality features for Project Citadel.
 
 The addition of MCP servers enhances collaborative development capabilities, while the Brave Browser configuration optimizes web searches and research for the development process. These tools together create a powerful, privacy-focused, and collaborative development environment tailored to Project Citadel's specific needs.
+
+The inclusion of AI-powered IDEs like Windsurf Wave 9 and CodeLLM further enhances the development experience, providing advanced features for code generation, understanding, and optimization. These tools are particularly valuable for working with complex AI/ML projects like Project Citadel, offering deep contextual understanding of codebases and intelligent assistance throughout the development process.
